@@ -1,9 +1,12 @@
 package com.pluralsight.pizza.topping;
 
-public abstract class Topping {
+import com.pluralsight.pizza.product.Pizza;
+
+public abstract class Topping extends Pizza {
     private String name;
 
-    public Topping(String name) {
+    public Topping(String size, String crustType, boolean isStuffedCrust, String name) {
+        super(size, crustType, isStuffedCrust);
         this.name = name;
     }
 
@@ -12,5 +15,4 @@ public abstract class Topping {
     }
 
     public abstract double getPrice();
-
 }
