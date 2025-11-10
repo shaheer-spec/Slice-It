@@ -5,7 +5,8 @@ public class Sauce extends Topping{
         super(orderNumber, name, price, size, crustType, isStuffedCrust, name1);
     }
 
-    public double getPrice(String size){
-        return 0;
+    @Override
+    public double getPrice(String size,double price){
+        return price += 0;
     }
 }

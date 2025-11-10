@@ -14,5 +14,5 @@ public abstract class Topping extends Pizza {
         return name;
     }
 
-    public abstract double getPrice(String size);
+    public abstract double getPrice(String size, double price);
 }
