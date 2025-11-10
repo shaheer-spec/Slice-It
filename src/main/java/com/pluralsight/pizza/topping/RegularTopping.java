@@ -1,4 +1,4 @@
-package com.pluralsight.pizza;
+package com.pluralsight.pizza.topping;
 
 public class RegularTopping {
 }
