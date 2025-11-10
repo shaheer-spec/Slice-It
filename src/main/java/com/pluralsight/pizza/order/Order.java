@@ -7,11 +7,11 @@ import java.util.List;
 
 public class Order {
     private int orderNumber;
-    private List<Product> Product;
+    private List<Product> Products;
 
     public Order(int orderNumber) {
         this.orderNumber = orderNumber;
-        Product = new ArrayList<>();
+        Products = new ArrayList<>();
     }
 
     public int getOrderNumber() {
@@ -19,7 +19,7 @@ public class Order {
     }
 
     public List<Product> getProduct() {
-        return Product;
+        return Products;
     }
 
     public void addProduct(){
