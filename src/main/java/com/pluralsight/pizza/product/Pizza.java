@@ -11,8 +11,8 @@ public class Pizza extends Product{
     private boolean isStuffedCrust;
     private List<Topping> toppings;
 
-    public Pizza(int orderNumber, String name, double price, String size, String crustType, boolean isStuffedCrust) {
-        super(orderNumber, name, price);
+    public Pizza(String name, double price, String size, String crustType, boolean isStuffedCrust) {
+        super(name, price);
         this.size = size;
         this.crustType = crustType;
         this.isStuffedCrust = isStuffedCrust;
@@ -40,7 +40,7 @@ public class Pizza extends Product{
     }
 
     @Override
-    public double calculatePrice(double price){
+    public double calculatePrice(){
         return 0;
     }
 
