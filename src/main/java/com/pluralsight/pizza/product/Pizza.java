@@ -5,13 +5,14 @@ import com.pluralsight.pizza.topping.Topping;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pizza {
+public class Pizza extends Product{
     private String size;
     private String crustType;
     private boolean isStuffedCrust;
     private List<Topping> toppings;
 
-    public Pizza(String size, String crustType, boolean isStuffedCrust) {
+    public Pizza(int orderNumber, String name, double price, String size, String crustType, boolean isStuffedCrust) {
+        super(orderNumber, name, price);
         this.size = size;
         this.crustType = crustType;
         this.isStuffedCrust = isStuffedCrust;
@@ -38,7 +39,8 @@ public class Pizza {
         // nothing for now
     }
 
-    public double calculatePrice(){
+    @Override
+    public double calculatePrice(double price){
         return 0;
     }
 
