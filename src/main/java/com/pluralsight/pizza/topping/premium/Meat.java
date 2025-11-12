@@ -2,31 +2,29 @@ package com.pluralsight.pizza.topping.premium;
 
 public class Meat extends Premium{
 
-    public Meat(boolean hasExtra) {
-        super(hasExtra);
+    public Meat(String name, boolean hasExtra) {
+        super(name, hasExtra);
     }
 
     public double getPrice(String size){
-        /*
-        Check what size the pizza is.
-        Use that to determine the base price for that size.
-        If hasExtra is true, add the extra meat cost for that size.
-        Return that total price.
-         */
+        double price = 0;
 
-        return 0;
-        // should return the price of topping
-    }
-
-    public double extraMeat(){
-        /*
-When the topping is first created, hasExtra = false.
-If the user adds extra meat/cheese, the system calls the method.
-The method updates the internal state to hasExtra = true.
-When the pizza’s price is calculated later, getPrice(size) checks that flag:
-If false → return the base price.
-If true → return base price + extra charge.
-         */
-        return 0;
+        if (size.equalsIgnoreCase("small")){
+            price = 1;
+            if (isHasExtra()){
+                price += 0.5;
+            }
+        } else if (size.equalsIgnoreCase("medium")) {
+            price = 2;
+            if (isHasExtra()){
+                price += 1;
+            }
+        } else if (size.equalsIgnoreCase("large")) {
+            price = 3;
+            if (isHasExtra()){
+                price += 1.5;
+            }
+        }
+        return price;
     }
 }

@@ -6,6 +6,8 @@ import com.pluralsight.pizza.product.GarlicKnot;
 import com.pluralsight.pizza.product.Pizza;
 import com.pluralsight.pizza.product.Product;
 import com.pluralsight.pizza.receipt.ReceiptDataManager;
+import com.pluralsight.pizza.topping.RegularTopping;
+import com.pluralsight.pizza.topping.Topping;
 
 import java.util.Scanner;
 
@@ -108,13 +110,14 @@ public class UserInterface {
 
         System.out.println("Lets go through your toppings one at a time (say done when finished): ");
         while(true){
-            System.out.println("Enter Topping Name: ");
-            String topping = scanner.nextLine();
+            System.out.print("Enter Topping Name: ");
+            String toppingName = scanner.nextLine();
 
-            if (topping.equalsIgnoreCase("done")){
+            if (toppingName.equalsIgnoreCase("done")){
                 break;
             }
-            newPizzaOrder.addToppings();
+            Topping topping = new RegularTopping(toppingName);
+            newPizzaOrder.addToppings(topping);
         }
 
         currentOrder.addProduct(newPizzaOrder);

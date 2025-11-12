@@ -34,13 +34,33 @@ public class Pizza extends Product{
         return toppings;
     }
 
-    public void addToppings(){
-        // nothing for now
+    public void addToppings(Topping topping){
+        if (toppings != null){
+            toppings.add(topping);
+        }
     }
 
     @Override
     public double calculatePrice(){
-        return 0;
+        double price = 0;
+
+        if (size.equalsIgnoreCase("small")){
+            price = 8.50;
+        } else if (size.equalsIgnoreCase("medium")) {
+            price = 12;
+        } else if (size.equalsIgnoreCase("large")) {
+            price = 16.50;
+        }
+
+        if (isStuffedCrust){
+            price += 1.5;
+        }
+
+        for (Topping topping : toppings) {
+            price += topping.getPrice();
+        }
+
+        return price;
     }
 
     public void removeToppings(){
