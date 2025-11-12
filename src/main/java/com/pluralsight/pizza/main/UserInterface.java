@@ -30,7 +30,8 @@ public class UserInterface {
             switch (userInput){
                 case 1:
                     orderScreen();
-                case 2:
+                    break;
+                case 0:
                     quit = true;
                     System.out.println("Goodbye");
                     break;
@@ -64,12 +65,16 @@ public class UserInterface {
             switch (userInput2){
                 case 1:
                     addPizza();
+                    break;
                 case 2:
                     addDrink();
+                    break;
                 case 3:
                     addGarlicKnot();
+                    break;
                 case 4:
                     checkout();
+                    break;
                 case 0:
                     quit2 = true;
                     System.out.println("Order Canceled");
@@ -112,7 +117,7 @@ public class UserInterface {
             newPizzaOrder.addToppings();
         }
 
-        currentOrder.getProduct().add(newPizzaOrder);
+        currentOrder.addProduct(newPizzaOrder);
         System.out.println("Added Pizza Successfully");
     }
 
@@ -121,14 +126,15 @@ public class UserInterface {
         System.out.println("║    Add Drink    ║");
         System.out.println("╚═════════════════╝");
 
-        System.out.println("Enter Drink name: ");
+        System.out.print("Enter Drink name: ");
         String drinkName = scanner.nextLine();
 
-        System.out.println("Enter size: (small/ medium/ large)");
+        System.out.print("Enter size: (small/ medium/ large)");
         String drinkSize = scanner.nextLine();
 
         Drink drink = new Drink(drinkName, drinkSize);
         currentOrder.getProduct().add(drink);
+        currentOrder.addProduct(drink);
         System.out.println("Drink Added to order");
     }
 
@@ -138,7 +144,7 @@ public class UserInterface {
         System.out.println("╚════════════════════════╝");
 
         GarlicKnot garlicKnot = new GarlicKnot();
-        currentOrder.getProduct().add(garlicKnot);
+        currentOrder.addProduct(garlicKnot);
         System.out.println("Added a order of Garlic Knots");
     }
 
@@ -147,12 +153,12 @@ public class UserInterface {
         System.out.println("║    Checkout    ║");
         System.out.println("╚════════════════╝");
 
-        System.out.println("Your order number is: " + currentOrder.getOrderNumber());
-
-        System.out.println("Current Items in your order are: ");
-        for (Product product : currentOrder.getProduct()) {
-            System.out.println(product);
+        if (currentOrder.getProduct().isEmpty()){
+            System.out.println("You have no items in this order");
+            return;
         }
+
+        currentOrder.printOrder();
 
         double total = currentOrder.total();
         System.out.println("Are you done with the order? (Yes/No)");

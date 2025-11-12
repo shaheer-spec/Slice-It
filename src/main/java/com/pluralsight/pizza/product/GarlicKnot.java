@@ -10,4 +10,8 @@ public class GarlicKnot extends Product{
         return 0;
     }
 
+    @Override
+    public String toString() {
+        return "Garlic Knots - $" + calculatePrice();
+    }
 }

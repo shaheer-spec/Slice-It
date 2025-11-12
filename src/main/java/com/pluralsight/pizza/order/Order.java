@@ -7,11 +7,11 @@ import java.util.List;
 
 public class Order {
     private int orderNumber;
-    private List<Product> Products;
+    private List<Product> products;
 
     public Order(int orderNumber) {
         this.orderNumber = orderNumber;
-        Products = new ArrayList<>();
+        products = new ArrayList<>();
     }
 
     public int getOrderNumber() {
@@ -19,18 +19,28 @@ public class Order {
     }
 
     public List<Product> getProduct() {
-        return Products;
+        return products;
     }
 
-    public void addProduct(){
-        // noting for now
+    public void addProduct(Product product){
+        products.add(product);
     }
 
     public double total(){
-        return 0;
+        double sum = 0;
+
+        for (Product product : products) {
+            sum += product.calculatePrice();
+        }
+        return sum;
     }
 
-    private void printOrder(){
-        // noting for now
+    public void printOrder(){
+        System.out.println("Order Number: " + orderNumber);
+        System.out.println("Current Items in your order are: ");
+        for (Product product : products) {
+            System.out.println(product);
+        }
+        System.out.println("Your total is: " + total());
     }
 }
