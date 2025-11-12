@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pizza extends Product{
+    private String name;
+    private double price;
     private String size;
     private String crustType;
     private boolean isStuffedCrust;
     private List<Topping> toppings;
 
     public Pizza(String name, double price, String size, String crustType, boolean isStuffedCrust) {
-        super(name, price);
+        this.name= name;
+        this.price = price;
         this.size = size;
         this.crustType = crustType;
         this.isStuffedCrust = isStuffedCrust;

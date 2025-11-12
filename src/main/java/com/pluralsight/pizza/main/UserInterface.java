@@ -1,9 +1,17 @@
 package com.pluralsight.pizza.main;
 
+import com.pluralsight.pizza.order.Order;
+import com.pluralsight.pizza.product.Drink;
+import com.pluralsight.pizza.product.GarlicKnot;
+import com.pluralsight.pizza.product.Pizza;
+import com.pluralsight.pizza.product.Product;
+import com.pluralsight.pizza.receipt.ReceiptDataManager;
+
 import java.util.Scanner;
 
 public class UserInterface {
     private Scanner scanner = new Scanner(System.in);
+    private Order currentOrder;
 
     public void homeScreen(){
 
@@ -21,7 +29,7 @@ public class UserInterface {
 
             switch (userInput){
                 case 1:
-                    // new Order method
+                    orderScreen();
                 case 2:
                     quit = true;
                     System.out.println("Goodbye");
@@ -32,6 +40,131 @@ public class UserInterface {
         }
     }
 
+    private void orderScreen(){
+        boolean quit2 = false;
+        int randomOrderNumber = (int) ((Math.random() * 10) + 1);
+        currentOrder = new Order(randomOrderNumber);
 
+        while(!quit2){
+            System.out.println("╔══════════════════╗");
+            System.out.println("║    Order Menu    ║");
+            System.out.println("╚══════════════════╝");
+
+            System.out.println("1) Add Pizza");
+            System.out.println("2) Add Drink");
+            System.out.println("3) Add Garlic Knots");
+            System.out.println("4) Checkout");
+            System.out.println("0) Cancel Order");
+
+            System.out.print("Your Choice: ");
+
+            int userInput2 = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (userInput2){
+                case 1:
+                    addPizza();
+                case 2:
+                    addDrink();
+                case 3:
+                    addGarlicKnot();
+                case 4:
+                    checkout();
+                case 0:
+                    quit2 = true;
+                    System.out.println("Order Canceled");
+                    break;
+                default:
+                    System.out.println("Wrong Input, Try Again");
+            }
+        }
+    }
+
+    private void addPizza(){
+        System.out.println("╔═════════════════╗");
+        System.out.println("║    Add Pizza    ║");
+        System.out.println("╚═════════════════╝");
+
+        System.out.print("Select your type (Custom, Signature): ");
+        String pizzaType = scanner.nextLine();
+
+        System.out.print("What size (Small/ medium/ Large): ");
+        String pizzaSize = scanner.nextLine();
+
+        System.out.print("What crust do you want for your pizza (thin / regular / thick / cauliflower) :");
+        String pizzaCrust = scanner.nextLine();
+
+        System.out.print("Do you want stuffed crust? (Yes/ No)");
+        String stuffedHolder = scanner.nextLine();
+        boolean pizzaStuffedCrust = stuffedHolder.equalsIgnoreCase("yes");
+
+        double basePrice = 0;
+        Pizza newPizzaOrder = new Pizza(pizzaType, basePrice, pizzaSize, pizzaCrust, pizzaStuffedCrust);
+
+        System.out.println("Lets go through your toppings one at a time (say done when finished): ");
+        while(true){
+            System.out.println("Enter Topping Name: ");
+            String topping = scanner.nextLine();
+
+            if (topping.equalsIgnoreCase("done")){
+                break;
+            }
+            newPizzaOrder.addToppings();
+        }
+
+        currentOrder.getProduct().add(newPizzaOrder);
+        System.out.println("Added Pizza Successfully");
+    }
+
+    private void addDrink(){
+        System.out.println("╔═════════════════╗");
+        System.out.println("║    Add Drink    ║");
+        System.out.println("╚═════════════════╝");
+
+        System.out.println("Enter Drink name: ");
+        String drinkName = scanner.nextLine();
+
+        System.out.println("Enter size: (small/ medium/ large)");
+        String drinkSize = scanner.nextLine();
+
+        Drink drink = new Drink(drinkName, drinkSize);
+        currentOrder.getProduct().add(drink);
+        System.out.println("Drink Added to order");
+    }
+
+    private void addGarlicKnot(){
+        System.out.println("╔════════════════════════╗");
+        System.out.println("║    Add Garlic Knots    ║");
+        System.out.println("╚════════════════════════╝");
+
+        GarlicKnot garlicKnot = new GarlicKnot();
+        currentOrder.getProduct().add(garlicKnot);
+        System.out.println("Added a order of Garlic Knots");
+    }
+
+    private void checkout(){
+        System.out.println("╔════════════════╗");
+        System.out.println("║    Checkout    ║");
+        System.out.println("╚════════════════╝");
+
+        System.out.println("Your order number is: " + currentOrder.getOrderNumber());
+
+        System.out.println("Current Items in your order are: ");
+        for (Product product : currentOrder.getProduct()) {
+            System.out.println(product);
+        }
+
+        double total = currentOrder.total();
+        System.out.println("Are you done with the order? (Yes/No)");
+        String confirmOrder = scanner.nextLine();
+
+        if (confirmOrder.equalsIgnoreCase("yes")){
+            ReceiptDataManager receiptDataManager = new ReceiptDataManager();
+            // have to complete the receiptDataManager class
+            System.out.println("Order successfully placed");
+        } else {
+            System.out.println("Order not placed");
+        }
+    }
 
 }

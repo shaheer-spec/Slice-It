@@ -1,9 +1,12 @@
 package com.pluralsight.pizza.product;
 
 public class Drink extends Product{
+    private String size;
+    private String name;
 
-    public Drink(String name, double price) {
-        super(name, price);
+    public Drink(String name, String size) {
+        this.name = name;
+        this.size = size;
     }
 
     @Override
