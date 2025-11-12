@@ -41,6 +41,6 @@ public class Order {
         for (Product product : products) {
             System.out.println(product);
         }
-        System.out.println("Your total is: " + total());
+        System.out.println("Your total is: $" + total());
     }
 }

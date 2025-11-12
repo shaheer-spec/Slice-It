@@ -2,7 +2,6 @@ package com.pluralsight.pizza.product;
 
 public class Drink extends Product{
     private String size;
-    private String name;
 
     public Drink(String name, String size) {
         this.name = name;
@@ -11,11 +10,19 @@ public class Drink extends Product{
 
     @Override
     public double calculatePrice() {
-        return 0;
+        double price = 0;
+        if (size.equalsIgnoreCase("small")){
+            price = 2;
+        } else if (size.equalsIgnoreCase("medium")) {
+            price = 2.5;
+        } else if (size.equalsIgnoreCase("large")) {
+            price = 3;
+        }
+        return price;
     }
 
     @Override
     public String toString() {
-        return "Drink: " + getName() + " (" + size + ") - $" + calculatePrice();
+        return "Drink: " + name + " (" + size + ") - $" + calculatePrice();
     }
 }

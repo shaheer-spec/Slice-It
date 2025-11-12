@@ -7,7 +7,7 @@ public class GarlicKnot extends Product{
 
     @Override
     public double calculatePrice() {
-        return 0;
+        return 1.5;
     }
 
     @Override

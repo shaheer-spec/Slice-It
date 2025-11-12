@@ -133,7 +133,6 @@ public class UserInterface {
         String drinkSize = scanner.nextLine();
 
         Drink drink = new Drink(drinkName, drinkSize);
-        currentOrder.getProduct().add(drink);
         currentOrder.addProduct(drink);
         System.out.println("Drink Added to order");
     }
