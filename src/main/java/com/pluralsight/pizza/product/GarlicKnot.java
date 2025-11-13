@@ -3,6 +3,7 @@ package com.pluralsight.pizza.product;
 public class GarlicKnot extends Product{
 
     public GarlicKnot() {
+        super("Garlic Knots");
     }
 
     @Override

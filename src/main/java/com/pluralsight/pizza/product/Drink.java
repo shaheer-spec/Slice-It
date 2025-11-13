@@ -4,7 +4,7 @@ public class Drink extends Product{
     private String size;
 
     public Drink(String name, String size) {
-        this.name = name;
+        super(name);
         this.size = size;
     }
 

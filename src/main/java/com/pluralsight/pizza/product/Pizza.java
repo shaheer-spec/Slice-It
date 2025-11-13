@@ -17,6 +17,7 @@ public class Pizza extends Product{
     private List<Topping> toppings;
 
     public Pizza(String name, String size, String crustType, boolean isStuffedCrust) {
+        super(name);
         this.size = size;
         this.crustType = crustType;
         this.isStuffedCrust = isStuffedCrust;

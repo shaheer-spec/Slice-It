@@ -89,16 +89,23 @@ public class UserInterface {
         System.out.println("║    Add Pizza    ║");
         System.out.println("╚═════════════════╝");
 
-        System.out.print("Select your type (Custom, Signature): ");
-        String pizzaType = scanner.nextLine();
+        System.out.print("Select your type (1. Custom Pizza, 2. Signature): ");
+        int pizza = scanner.nextInt();
+        scanner.nextLine();
+        String pizzaType = "";
+        switch (pizza){
+            case 1 -> pizzaType = "Custom Pizza";
+            case 2 -> pizzaType = "Signature Pizza";
+            default -> System.out.println("Wrong Input, Try again");
+        }
 
         System.out.print("What size (Small/ medium/ Large): ");
         String pizzaSize = scanner.nextLine();
 
-        System.out.print("What crust do you want for your pizza (thin / regular / thick / cauliflower) :");
+        System.out.print("What crust do you want for your pizza (thin / regular / thick / cauliflower): ");
         String pizzaCrust = scanner.nextLine();
 
-        System.out.print("Do you want stuffed crust? (Yes/ No)");
+        System.out.print("Do you want stuffed crust? (Yes/ No): ");
         String stuffedHolder = scanner.nextLine();
         boolean pizzaStuffedCrust = stuffedHolder.equalsIgnoreCase("yes");
 
@@ -210,7 +217,7 @@ public class UserInterface {
 
         if (confirmOrder.equalsIgnoreCase("yes")){
             ReceiptDataManager receiptDataManager = new ReceiptDataManager();
-            // have to complete the receiptDataManager class
+            receiptDataManager.saveContract(currentOrder);
             System.out.println("Order successfully placed");
         } else {
             System.out.println("Order not placed");

@@ -14,8 +14,6 @@ public abstract class Premium extends Topping {
         return hasExtra;
     }
 
-    public double getPrice() { return 0; }
-
     @Override
     public String toString() {
         if (isHasExtra()) {
