@@ -4,7 +4,9 @@ import com.pluralsight.pizza.order.Order;
 import com.pluralsight.pizza.product.Drink;
 import com.pluralsight.pizza.product.GarlicKnot;
 import com.pluralsight.pizza.product.Pizza;
+import com.pluralsight.pizza.product.signature.BBQChickenPizza;
 import com.pluralsight.pizza.product.signature.MargheritaPizza;
+import com.pluralsight.pizza.product.signature.MeatLoversPizza;
 import com.pluralsight.pizza.product.signature.VeggiePizza;
 import com.pluralsight.pizza.receipt.ReceiptDataManager;
 
@@ -124,6 +126,8 @@ public class UserInterface {
             System.out.println("Choose a Signature Pizza:");
             System.out.println("1. Margherita");
             System.out.println("2. Veggie");
+            System.out.println("3. Meat Lovers");
+            System.out.println("4. BBQ Chicken");
             System.out.println("0. Cancel");
 
             int signaturePizza = scanner.nextInt();
@@ -132,6 +136,8 @@ public class UserInterface {
             switch (signaturePizza) {
                 case 1 -> newPizzaOrder = new MargheritaPizza();
                 case 2 -> newPizzaOrder = new VeggiePizza();
+                case 3 -> newPizzaOrder = new MeatLoversPizza();
+                case 4 -> newPizzaOrder = new BBQChickenPizza();
                 case 0 -> { return; }
                 default -> {
                     System.out.println("Wrong Input");
