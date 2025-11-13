@@ -4,10 +4,7 @@ import com.pluralsight.pizza.order.Order;
 import com.pluralsight.pizza.product.Drink;
 import com.pluralsight.pizza.product.GarlicKnot;
 import com.pluralsight.pizza.product.Pizza;
-import com.pluralsight.pizza.product.Product;
 import com.pluralsight.pizza.receipt.ReceiptDataManager;
-import com.pluralsight.pizza.topping.RegularTopping;
-import com.pluralsight.pizza.topping.Topping;
 
 import java.util.Scanner;
 
@@ -130,9 +127,6 @@ public class UserInterface {
 
         }
 
-
-
-
         currentOrder.addProduct(newPizzaOrder);
         System.out.println("Added Pizza Successfully");
     }
@@ -142,11 +136,46 @@ public class UserInterface {
         System.out.println("║    Add Drink    ║");
         System.out.println("╚═════════════════╝");
 
-        System.out.print("Enter Drink name: ");
-        String drinkName = scanner.nextLine();
+        System.out.println("1. Coke | 2. Pepsi | 3. Water | 4. Sprite | 5. Fanta | 6. 7Up | 0. Return");
 
-        System.out.print("Enter size: (small/ medium/ large)");
-        String drinkSize = scanner.nextLine();
+        System.out.print("Choose a drink: ");
+        int drinkChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (drinkChoice == 0) {
+            return;
+        }
+
+        String drinkName = "";
+        switch (drinkChoice) {
+            case 1 -> drinkName = "Coke";
+            case 2 -> drinkName = "Pepsi";
+            case 3 -> drinkName = "Water";
+            case 4 -> drinkName = "Sprite";
+            case 5 -> drinkName = "Fanta";
+            case 6 -> drinkName = "7Up";
+            default -> {
+                System.out.println("Invalid option. Try again.");
+                return;
+            }
+        }
+
+        System.out.println("Select size:");
+        System.out.println("1. Small | 2. Medium | 3. Large");
+        System.out.print("Choose a size: ");
+        int size = scanner.nextInt();
+        scanner.nextLine();
+
+        String drinkSize = "";
+        switch (size) {
+            case 1 -> drinkSize = "small";
+            case 2 -> drinkSize = "medium";
+            case 3 -> drinkSize = "large";
+            default -> {
+                System.out.println("Invalid size. Try again.");
+                return;
+            }
+        }
 
         Drink drink = new Drink(drinkName, drinkSize);
         currentOrder.addProduct(drink);
