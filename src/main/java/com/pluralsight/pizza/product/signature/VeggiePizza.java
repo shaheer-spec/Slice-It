@@ -7,7 +7,7 @@ import com.pluralsight.pizza.topping.premium.Cheese;
 
 public class VeggiePizza extends Pizza {
 
-    public VeggiePizza(String name, String size, String crustType, boolean isStuffedCrust) {
+    public VeggiePizza() {
         super("Veggie", "small", "regular", false);
 
         addToppings(new RegularTopping("bell peppers", false));

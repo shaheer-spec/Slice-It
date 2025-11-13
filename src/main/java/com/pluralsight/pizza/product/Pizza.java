@@ -46,6 +46,43 @@ public class Pizza extends Product{
         }
     }
 
+    public void removeToppings(Scanner scanner){
+        if(toppings.isEmpty()){
+            System.out.println("No Toppings to remove");
+            return;
+        }
+
+        System.out.println("╔══════════════════════╗");
+        System.out.println("║   Remove Toppings    ║");
+        System.out.println("╚══════════════════════╝");
+
+        for (Topping topping : toppings) {
+            System.out.println("- " + topping.getName());
+        }
+        System.out.println("- Return");
+
+        System.out.print("What Topping would you like to remove: ");
+        String removeTopping = scanner.nextLine();
+
+        if (removeTopping.equalsIgnoreCase("Return")){
+            return;
+        }
+
+        Topping toppingToRemove = null;
+        for (Topping topping : toppings) {
+            if (topping.getName().equalsIgnoreCase(removeTopping)){
+                toppingToRemove = topping;
+            }
+        }
+
+        if (toppingToRemove != null){
+            toppings.remove(toppingToRemove);
+            System.out.println("Removed removeTopping");
+        } else {
+            System.out.println("No Toppings found with that name");
+        }
+    }
+
     @Override
     public double calculatePrice(){
         double price = 0;
@@ -67,10 +104,6 @@ public class Pizza extends Product{
         }
 
         return price;
-    }
-
-    public void removeToppings(){
-        // nothing for now
     }
 
     public void addMeatToppings(Pizza pizza, Scanner scanner){

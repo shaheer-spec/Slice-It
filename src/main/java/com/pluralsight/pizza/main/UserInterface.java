@@ -4,6 +4,8 @@ import com.pluralsight.pizza.order.Order;
 import com.pluralsight.pizza.product.Drink;
 import com.pluralsight.pizza.product.GarlicKnot;
 import com.pluralsight.pizza.product.Pizza;
+import com.pluralsight.pizza.product.signature.MargheritaPizza;
+import com.pluralsight.pizza.product.signature.VeggiePizza;
 import com.pluralsight.pizza.receipt.ReceiptDataManager;
 
 import java.util.Scanner;
@@ -99,18 +101,53 @@ public class UserInterface {
             default -> System.out.println("Wrong Input, Try again");
         }
 
-        System.out.print("What size (Small/ medium/ Large): ");
-        String pizzaSize = scanner.nextLine();
+        Pizza newPizzaOrder = null;
+        if (pizza == 1) {
+            pizzaType = "Custom Pizza";
+            System.out.print("What size (Small/ medium/ Large): ");
+            String pizzaSize = scanner.nextLine();
 
-        System.out.print("What crust do you want for your pizza (thin / regular / thick / cauliflower): ");
-        String pizzaCrust = scanner.nextLine();
+            System.out.print("What crust do you want for your pizza (thin / regular / thick / cauliflower): ");
+            String pizzaCrust = scanner.nextLine();
 
-        System.out.print("Do you want stuffed crust? (Yes/ No): ");
-        String stuffedHolder = scanner.nextLine();
-        boolean pizzaStuffedCrust = stuffedHolder.equalsIgnoreCase("yes");
+            System.out.print("Do you want stuffed crust? (Yes/ No): ");
+            String stuffedHolder = scanner.nextLine();
+            boolean pizzaStuffedCrust = stuffedHolder.equalsIgnoreCase("yes");
 
-        Pizza newPizzaOrder = new Pizza(pizzaType, pizzaSize, pizzaCrust, pizzaStuffedCrust);
+            newPizzaOrder = new Pizza(pizzaType, pizzaSize, pizzaCrust, pizzaStuffedCrust);
 
+            customizeTopping(newPizzaOrder);
+            currentOrder.addProduct(newPizzaOrder);
+            System.out.println("Custom Pizza Added");
+
+        } else if (pizza == 2) {
+            System.out.println("Choose a Signature Pizza:");
+            System.out.println("1. Margherita");
+            System.out.println("2. Veggie");
+            System.out.println("0. Cancel");
+
+            int signaturePizza = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (signaturePizza) {
+                case 1 -> newPizzaOrder = new MargheritaPizza();
+                case 2 -> newPizzaOrder = new VeggiePizza();
+                case 0 -> { return; }
+                default -> {
+                    System.out.println("Wrong Input");
+                    return;
+                }
+            }
+
+            customizeTopping(newPizzaOrder);
+            System.out.println("Signature Pizza Added");
+        }
+
+        currentOrder.addProduct(newPizzaOrder);
+        System.out.println("Added Pizza Successfully");
+    }
+
+    private void customizeTopping(Pizza pizza){
         boolean done = false;
         while (!done) {
             System.out.println("Choose a topping category:");
@@ -118,24 +155,22 @@ public class UserInterface {
             System.out.println("2. Cheeses");
             System.out.println("3. Other Toppings");
             System.out.println("4. Sauces");
+            System.out.println("5. Remove Topping");
             System.out.println("0. Done Adding Toppings");
             System.out.print("Your choice: ");
             int userToppings = scanner.nextInt();
             scanner.nextLine();
 
             switch (userToppings) {
-                case 1 -> newPizzaOrder.addMeatToppings(newPizzaOrder, scanner);
-                case 2 -> newPizzaOrder.addCheeseToppings(newPizzaOrder, scanner);
-                case 3 -> newPizzaOrder.addRegularToppings(newPizzaOrder, scanner);
-                case 4 -> newPizzaOrder.addSauceToppings(newPizzaOrder, scanner);
+                case 1 -> pizza.addMeatToppings(pizza, scanner);
+                case 2 -> pizza.addCheeseToppings(pizza, scanner);
+                case 3 -> pizza.addRegularToppings(pizza, scanner);
+                case 4 -> pizza.addSauceToppings(pizza, scanner);
+                case 5 -> pizza.removeToppings(scanner);
                 case 0 -> done = true;
                 default -> System.out.println("Wrong Input, Try Again.");
             }
-
         }
-
-        currentOrder.addProduct(newPizzaOrder);
-        System.out.println("Added Pizza Successfully");
     }
 
     private void addDrink(){

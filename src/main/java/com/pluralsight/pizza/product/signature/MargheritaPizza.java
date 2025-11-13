@@ -7,7 +7,7 @@ import com.pluralsight.pizza.topping.premium.Cheese;
 
 public class MargheritaPizza extends Pizza {
 
-    public MargheritaPizza(String name, String size, String crustType, boolean isStuffedCrust) {
+    public MargheritaPizza() {
         super("Margherita", "medium", "regular", false);
         addToppings(new Cheese("mozzarella", false));
         addToppings(new RegularTopping("tomatoes", false));
