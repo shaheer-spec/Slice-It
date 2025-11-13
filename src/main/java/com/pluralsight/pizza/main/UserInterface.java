@@ -105,10 +105,9 @@ public class UserInterface {
         String stuffedHolder = scanner.nextLine();
         boolean pizzaStuffedCrust = stuffedHolder.equalsIgnoreCase("yes");
 
-        double basePrice = 0;
-        Pizza newPizzaOrder = new Pizza(pizzaType, basePrice, pizzaSize, pizzaCrust, pizzaStuffedCrust);
+        Pizza newPizzaOrder = new Pizza(pizzaType, pizzaSize, pizzaCrust, pizzaStuffedCrust);
 
-        System.out.println("Lets go through your toppings one at a time (say done when finished): ");
+        /*System.out.println("Lets go through your toppings one at a time (say done when finished): ");
         while(true){
             System.out.print("Enter Topping Name: ");
             String toppingName = scanner.nextLine();
@@ -118,7 +117,33 @@ public class UserInterface {
             }
             Topping topping = new RegularTopping(toppingName);
             newPizzaOrder.addToppings(topping);
+        }*/
+
+        boolean done = false;
+        while (!done) {
+            System.out.println("Choose a topping category:");
+            System.out.println("1. Meats");
+            System.out.println("2. Cheeses");
+            System.out.println("3. Other Toppings");
+            System.out.println("4. Sauces");
+            System.out.println("0. Done Adding Toppings");
+            System.out.print("Your choice: ");
+            int userToppings = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (userToppings) {
+                case 1 -> newPizzaOrder.addMeatToppings(newPizzaOrder, scanner);
+                case 2 -> newPizzaOrder.addCheeseToppings(newPizzaOrder, scanner);
+                case 3 -> newPizzaOrder.addRegularToppings(newPizzaOrder, scanner);
+                case 4 -> newPizzaOrder.addSauceToppings(newPizzaOrder, scanner);
+                case 0 -> done = true;
+                default -> System.out.println("Wrong Input, Try Again.");
+            }
+
         }
+
+
+
 
         currentOrder.addProduct(newPizzaOrder);
         System.out.println("Added Pizza Successfully");
