@@ -107,18 +107,6 @@ public class UserInterface {
 
         Pizza newPizzaOrder = new Pizza(pizzaType, pizzaSize, pizzaCrust, pizzaStuffedCrust);
 
-        /*System.out.println("Lets go through your toppings one at a time (say done when finished): ");
-        while(true){
-            System.out.print("Enter Topping Name: ");
-            String toppingName = scanner.nextLine();
-
-            if (toppingName.equalsIgnoreCase("done")){
-                break;
-            }
-            Topping topping = new RegularTopping(toppingName);
-            newPizzaOrder.addToppings(topping);
-        }*/
-
         boolean done = false;
         while (!done) {
             System.out.println("Choose a topping category:");

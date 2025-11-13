@@ -7,7 +7,12 @@ public class Sauce extends Topping{
     }
 
     @Override
-    public double getPrice(){
+    public double getPrice(String size){
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

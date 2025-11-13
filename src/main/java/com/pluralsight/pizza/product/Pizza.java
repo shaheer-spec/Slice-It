@@ -62,7 +62,7 @@ public class Pizza extends Product{
         }
 
         for (Topping topping : toppings) {
-            price += topping.getPrice();
+            price += topping.getPrice(size);
         }
 
         return price;
@@ -70,11 +70,6 @@ public class Pizza extends Product{
 
     public void removeToppings(){
         // nothing for now
-    }
-
-    @Override
-    public String toString() {
-        return "Pizza: " + size + " " + crustType + " Crust - $" + calculatePrice();
     }
 
     public void addMeatToppings(Pizza pizza, Scanner scanner){
@@ -85,6 +80,7 @@ public class Pizza extends Product{
         System.out.println("1. pepperoni | 2. sausage | 3. ham | 4. bacon | 5. chicken | 6. meatball | 0. return");
         System.out.print("choose a option: ");
         int meatTopping = scanner.nextInt();
+        scanner.nextLine();
 
         if (meatTopping == 0){return;}
 
@@ -100,7 +96,7 @@ public class Pizza extends Product{
                 System.out.println("Wrong Input, Try Again");
             }
         }
-        System.out.println("Do you want extra " + meat + " (yes/no): ");
+        System.out.print("Do you want extra " + meat + " (yes/no): ");
         String extraMeat = scanner.nextLine();
         boolean extra = extraMeat.equalsIgnoreCase("yes");
 
@@ -216,6 +212,23 @@ public class Pizza extends Product{
             System.out.println("Added: " + sauceName);
 
         }
+    }
 
+    @Override
+    public String toString() {
+        String base =  "Pizza: " + size + " " + crustType + " Crust - $" + calculatePrice();
+        if (toppings.isEmpty()){
+            return base + "\nNo Toppings";
+        }
+
+        String line = "";
+        for (int i = 0; i < toppings.size(); i++) {
+            Topping topping = toppings.get(i);
+            line += topping.toString();
+            line += ", ";
+        }
+
+        line = line.substring(0, line.length()-2);
+        return base + "\nToppings - " + line;
     }
 }

@@ -7,7 +7,7 @@ public class Side extends Topping{
     }
 
     @Override
-    public double getPrice() {
+    public double getPrice(String size) {
         return 0;
     }
 }
