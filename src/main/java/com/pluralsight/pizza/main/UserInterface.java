@@ -15,15 +15,20 @@ import java.util.Scanner;
 public class UserInterface {
     private Scanner scanner = new Scanner(System.in);
     private Order currentOrder;
+    public static final String DEFAULT = "\u001B[0m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String YELLOW = "\u001B[33m";
 
     public void homeScreen(){
 
         boolean quit = false;
 
         while (!quit){
-            System.out.println("╔════════════════╗");
+            System.out.println(BLUE +
+                               "╔════════════════╗");
             System.out.println("║    Slice It    ║");
-            System.out.println("╚════════════════╝");
+            System.out.println("╚════════════════╝" + DEFAULT);
             System.out.println("1. New Order");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
@@ -50,9 +55,9 @@ public class UserInterface {
         currentOrder = new Order(randomOrderNumber);
 
         while(!quit2){
-            System.out.println("╔══════════════════╗");
+            System.out.println(GREEN + "╔══════════════════╗");
             System.out.println("║    Order Menu    ║");
-            System.out.println("╚══════════════════╝");
+            System.out.println("╚══════════════════╝" + DEFAULT);
 
             System.out.println("1) Add Pizza");
             System.out.println("2) Add Drink");
@@ -89,9 +94,9 @@ public class UserInterface {
     }
 
     private void addPizza(){
-        System.out.println("╔═════════════════╗");
+        System.out.println(YELLOW + "╔═════════════════╗");
         System.out.println("║    Add Pizza    ║");
-        System.out.println("╚═════════════════╝");
+        System.out.println("╚═════════════════╝" + DEFAULT);
 
         System.out.print("Select your type (1. Custom Pizza, 2. Signature): ");
         int pizza = scanner.nextInt();
@@ -156,7 +161,8 @@ public class UserInterface {
     private void customizeTopping(Pizza pizza){
         boolean done = false;
         while (!done) {
-            System.out.println("Choose a topping category:");
+            System.out.println(" ");
+            System.out.println("Choose a topping:");
             System.out.println("1. Meats");
             System.out.println("2. Cheeses");
             System.out.println("3. Other Toppings");
@@ -180,9 +186,9 @@ public class UserInterface {
     }
 
     private void addDrink(){
-        System.out.println("╔═════════════════╗");
+        System.out.println(GREEN + "╔═════════════════╗");
         System.out.println("║    Add Drink    ║");
-        System.out.println("╚═════════════════╝");
+        System.out.println("╚═════════════════╝" + DEFAULT);
 
         System.out.println("1. Coke | 2. Pepsi | 3. Water | 4. Sprite | 5. Fanta | 6. 7Up | 0. Return");
 
@@ -231,9 +237,9 @@ public class UserInterface {
     }
 
     private void addGarlicKnot(){
-        System.out.println("╔════════════════════════╗");
+        System.out.println(GREEN + "╔════════════════════════╗");
         System.out.println("║    Add Garlic Knots    ║");
-        System.out.println("╚════════════════════════╝");
+        System.out.println("╚════════════════════════╝" + DEFAULT);
 
         GarlicKnot garlicKnot = new GarlicKnot();
         currentOrder.addProduct(garlicKnot);
@@ -241,9 +247,9 @@ public class UserInterface {
     }
 
     private void checkout(){
-        System.out.println("╔════════════════╗");
+        System.out.println(GREEN + "╔════════════════╗");
         System.out.println("║    Checkout    ║");
-        System.out.println("╚════════════════╝");
+        System.out.println("╚════════════════╝" + DEFAULT);
 
         if (currentOrder.getProduct().isEmpty()){
             System.out.println("You have no items in this order");
@@ -252,7 +258,6 @@ public class UserInterface {
 
         currentOrder.printOrder();
 
-        double total = currentOrder.total();
         System.out.println("Are you done with the order? (Yes/No)");
         String confirmOrder = scanner.nextLine();
 

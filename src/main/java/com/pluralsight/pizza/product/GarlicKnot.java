@@ -1,6 +1,8 @@
 package com.pluralsight.pizza.product;
 
 public class GarlicKnot extends Product{
+    public static final String RED = "\u001B[31m";
+    public static final String DEFAULT = "\u001B[0m";
 
     public GarlicKnot() {
         super("Garlic Knots");
@@ -13,6 +15,6 @@ public class GarlicKnot extends Product{
 
     @Override
     public String toString() {
-        return "Garlic Knots - $" + calculatePrice();
+        return "Garlic Knots - " + RED + "$" + calculatePrice() + DEFAULT;
     }
 }

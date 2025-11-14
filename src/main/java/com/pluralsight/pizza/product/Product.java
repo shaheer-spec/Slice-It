@@ -4,7 +4,6 @@ import com.pluralsight.pizza.order.Order;
 
 public abstract class Product {
     String name;
-    private double price;
 
     public Product(String name) {
         this.name = name;

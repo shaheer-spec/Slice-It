@@ -2,6 +2,8 @@ package com.pluralsight.pizza.product;
 
 public class Drink extends Product{
     private String size;
+    public static final String RED = "\u001B[31m";
+    public static final String DEFAULT = "\u001B[0m";
 
     public Drink(String name, String size) {
         super(name);
@@ -23,6 +25,6 @@ public class Drink extends Product{
 
     @Override
     public String toString() {
-        return "Drink: " + name + " (" + size + ") - $" + calculatePrice();
+        return "Drink: " + name + " (" + size + ") - " + RED + "$" + calculatePrice() + DEFAULT;
     }
 }

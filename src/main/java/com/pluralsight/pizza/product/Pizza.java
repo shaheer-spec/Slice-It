@@ -11,6 +11,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Pizza extends Product{
+    public static final String DEFAULT = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String YELLOW = "\u001B[33m";
     private String size;
     private String crustType;
     private boolean isStuffedCrust;
@@ -22,22 +27,6 @@ public class Pizza extends Product{
         this.crustType = crustType;
         this.isStuffedCrust = isStuffedCrust;
         this.toppings = new ArrayList<>();
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public String getCrustType() {
-        return crustType;
-    }
-
-    public boolean isStuffedCrust() {
-        return isStuffedCrust;
-    }
-
-    public List<Topping> getToppings() {
-        return toppings;
     }
 
     public void addToppings(Topping topping){
@@ -52,9 +41,9 @@ public class Pizza extends Product{
             return;
         }
 
-        System.out.println("╔══════════════════════╗");
+        System.out.println(RED + "╔══════════════════════╗");
         System.out.println("║   Remove Toppings    ║");
-        System.out.println("╚══════════════════════╝");
+        System.out.println("╚══════════════════════╝" + DEFAULT);
 
         for (Topping topping : toppings) {
             System.out.println("- " + topping.getName());
@@ -107,9 +96,9 @@ public class Pizza extends Product{
     }
 
     public void addMeatToppings(Pizza pizza, Scanner scanner){
-        System.out.println("╔═════════════╗");
+        System.out.println(GREEN + "╔═════════════╗");
         System.out.println("║    Meats    ║");
-        System.out.println("╚═════════════╝");
+        System.out.println("╚═════════════╝" + DEFAULT);
 
         System.out.println("1. pepperoni | 2. sausage | 3. ham | 4. bacon | 5. chicken | 6. meatball | 0. return");
         System.out.print("choose a option: ");
@@ -128,6 +117,7 @@ public class Pizza extends Product{
             case 6 -> meat = "meatball";
             default -> {
                 System.out.println("Wrong Input, Try Again");
+                return;
             }
         }
         System.out.print("Do you want extra " + meat + " (yes/no): ");
@@ -140,9 +130,9 @@ public class Pizza extends Product{
     }
 
     public void addCheeseToppings(Pizza pizza, Scanner scanner){
-        System.out.println("╔══════════════╗");
+        System.out.println(YELLOW + "╔══════════════╗");
         System.out.println("║   Cheeses    ║");
-        System.out.println("╚══════════════╝");
+        System.out.println("╚══════════════╝" + DEFAULT);
 
         System.out.println("1. mozzarella | 2. parmesan | 3. ricotta | 4. goat cheese | 5. buffalo | 0. return");
         System.out.print("choose an option: ");
@@ -159,8 +149,8 @@ public class Pizza extends Product{
             case 4 -> cheese = "goat cheese";
             case 5 -> cheese = "buffalo";
             default -> {
-                System.out.println("Wrong input, try again.");
-                return; // stop method and return to menu
+                System.err.println("Wrong input, try again.");
+                return;
             }
         }
 
@@ -173,9 +163,9 @@ public class Pizza extends Product{
     }
 
     public void addRegularToppings(Pizza pizza, Scanner scanner){
-        System.out.println("╔════════════════════╗");
-        System.out.println("║   Regular Toppings ║");
-        System.out.println("╚════════════════════╝");
+        System.out.println(BLUE + "╔═══════════════════╗");
+        System.out.println("║  Regular Toppings ║");
+        System.out.println("╚═══════════════════╝" + DEFAULT);
 
         while (true){
             System.out.println("1. onions | 2. mushrooms | 3. bell peppers | 4. olives | 5. tomatoes | 6. spinach | 7. basil | 8. pineapple | 9. anchovies | 0. return");
@@ -199,7 +189,7 @@ public class Pizza extends Product{
                 case 9 -> toppingName = "anchovies";
                 default -> {
                     System.out.println("Wrong Input, Try Again");
-                    continue;
+                    return;
                 }
             }
             System.out.print("Do you want extra " + toppingName + "? (yes/no): ");
@@ -212,9 +202,9 @@ public class Pizza extends Product{
     }
 
     public void addSauceToppings(Pizza pizza, Scanner scanner){
-        System.out.println("╔════════════╗");
+        System.out.println(BLUE + "╔════════════╗");
         System.out.println("║   Sauces   ║");
-        System.out.println("╚════════════╝");
+        System.out.println("╚════════════╝" + DEFAULT);
 
         while (true){
             System.out.println("1. marinara | 2. alfredo | 3. pesto | 4. bbq | 5. buffalo | 6. olive oil | 0. return");
@@ -234,7 +224,7 @@ public class Pizza extends Product{
                 case 6 -> sauceName = "olive oil";
                 default -> {
                     System.out.println("Wrong Input, Try Again");
-                    continue;
+                    return;
                 }
             }
 
@@ -250,7 +240,7 @@ public class Pizza extends Product{
 
     @Override
     public String toString() {
-        String base =  "Pizza: " + size + " " + crustType + " Crust - $" + calculatePrice();
+        String base =  "Pizza: " + size + " " + crustType + " Crust - " + RED + "$" + calculatePrice() + DEFAULT;
         if (toppings.isEmpty()){
             return base + "\nNo Toppings";
         }

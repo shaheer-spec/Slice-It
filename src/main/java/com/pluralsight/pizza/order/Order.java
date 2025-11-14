@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+    public static final String RED = "\u001B[31m";
+    public static final String DEFAULT = "\u001B[0m";
     private int orderNumber;
     private List<Product> products;
 
@@ -41,6 +43,6 @@ public class Order {
         for (Product product : products) {
             System.out.println(product);
         }
-        System.out.println("Your total is: $" + total());
+        System.out.println("\nYour total is: " + RED + "$" + total() + DEFAULT);
     }
 }
