@@ -1,8 +1,8 @@
 # Slice-It
 
-The Slice It Pizza Ordering System lets users order pizza, drinks, and garlic knots through a menu on the screen.
-The main purpose of this program is to let customers build their own pizza or choose a signature pizza, add toppings, and see the total cost. When the order is finished, the program saves a receipt with all the items.
-This program is made for anyone who wants an easy way to order pizza and see what they bought.
+The Slice It Pizza application lets the users order pizza, drinks, and garlic knots through a menu.
+The main purpose of this application is to let the customers build their own pizza or choose a signature pizza, add toppings, and see the total cost. When the order is finished, this application saves a receipt with all the items.
+This application is made for anyone who wants an easy way to order pizza and see what they bought.
 
 The Main function of this application:
 
